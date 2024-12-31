@@ -9,9 +9,10 @@ namespace order.service.domain.Interfaces.Repositories
 {
     public interface IOrderRepository
     {
-        Order? GetById(Guid id);
-        void Add(Order order);
-        void Update(Order order);
-        void Delete(Guid id);
+        Task<Order> Add(Order order);
+        Task<Order> Update(Order order);
+        Task<Order> Delete(int id);
+        Task<Order?> GetById(int id);
+        Task<List<Order>> GetAll();
     }
 }
