@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{959B14BF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "order.service.http", "order.service.http\order.service.http.csproj", "{069F9920-EAD1-4854-BCDD-DB5E83B2D9DC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "order.service.efcore", "order.service.efcore\order.service.efcore.csproj", "{61EC4813-CD43-47B3-9F81-C431754C76E2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{069F9920-EAD1-4854-BCDD-DB5E83B2D9DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{069F9920-EAD1-4854-BCDD-DB5E83B2D9DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{069F9920-EAD1-4854-BCDD-DB5E83B2D9DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61EC4813-CD43-47B3-9F81-C431754C76E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61EC4813-CD43-47B3-9F81-C431754C76E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61EC4813-CD43-47B3-9F81-C431754C76E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61EC4813-CD43-47B3-9F81-C431754C76E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +56,7 @@ Global
 		{D20F6A6E-47E4-4E82-AEE5-B2D48B27C95A} = {50CAEF66-C1F3-4EFC-81DA-7F45A10DA457}
 		{39297FB7-B7EF-4242-A401-A2D6112F3576} = {B3CAE40C-C4D7-465A-9C90-B338F4C37A34}
 		{069F9920-EAD1-4854-BCDD-DB5E83B2D9DC} = {959B14BF-5FB1-4D3E-AF55-A047087BB228}
+		{61EC4813-CD43-47B3-9F81-C431754C76E2} = {959B14BF-5FB1-4D3E-AF55-A047087BB228}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0162CB47-D01A-4CCC-B312-4DFB4E6C5946}
