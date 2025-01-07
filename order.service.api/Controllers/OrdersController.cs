@@ -15,7 +15,7 @@ namespace order.service.api.Controllers
 
         [HttpGet("{orderId}")]
         [ProducesResponseType(typeof(Order), 200)]
-        public async Task<IActionResult> GetOrder([FromRoute] Guid orderId)
+        public async Task<IActionResult> GetOrder([FromRoute] int orderId)
         {
             var order = await _mediator.Send(new GetOrderQuery(orderId));
             if (order is null)
@@ -35,7 +35,7 @@ namespace order.service.api.Controllers
 
         [HttpPut("{orderId}/items/{itemId}")]
         [ProducesResponseType(typeof(Order), 200)]
-        public async Task<IActionResult> ChangeOrderItems([FromRoute] Guid orderId, [FromRoute] Guid itemId, [FromBody] ChangeOrderItemsCommand command)
+        public async Task<IActionResult> ChangeOrderItems([FromRoute] int orderId, [FromRoute] int itemId, [FromBody] ChangeOrderItemsCommand command)
         {
             command.SetOrderId(orderId);
             command.SetItemId(itemId);
@@ -53,7 +53,7 @@ namespace order.service.api.Controllers
 
         [HttpPost("{orderId}/proccess")]
         [ProducesResponseType(typeof(Order), 200)]
-        public async Task<IActionResult> ProccessOrder([FromRoute] Guid orderId)
+        public async Task<IActionResult> ProccessOrder([FromRoute] int orderId)
         {
             var order = await _mediator.Send(new ProccessOrderCommand(orderId));
             return Ok(order);

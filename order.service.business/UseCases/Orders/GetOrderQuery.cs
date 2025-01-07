@@ -1,17 +1,12 @@
 ﻿using MediatR;
 using order.service.domain.Interfaces.Repositories;
 using order.service.domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace order.service.business.UseCases.Orders
 {
-    public class GetOrderQuery(Guid orderId) : IRequest<Order>
+    public class GetOrderQuery(int orderId) : IRequest<Order>
     {
-        public Guid OrderId { get; set; } = orderId;
+        public int OrderId { get; set; } = orderId;
 
         internal class Handler : IRequestHandler<GetOrderQuery, Order?>
         {
@@ -24,7 +19,7 @@ namespace order.service.business.UseCases.Orders
 
             public async Task<Order?> Handle(GetOrderQuery request, CancellationToken cancellationToken)
             {
-                return await Task.FromResult(_orderRepository.GetById(request.OrderId));
+                return await _orderRepository.GetByIdAsync(request.OrderId);
             }
         }
     }

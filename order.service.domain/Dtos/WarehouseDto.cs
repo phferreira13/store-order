@@ -1,15 +1,9 @@
-﻿using order.service.domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static order.service.domain.Dtos.WarehouseDto;
+﻿using static order.service.domain.Dtos.WarehouseDto;
 
 namespace order.service.domain.Dtos
 {
     public record WarehouseDto(
-        Guid Id,
+        int Id,
         string Name,
         string Location,
         DateTime CreatedAt,
@@ -17,7 +11,7 @@ namespace order.service.domain.Dtos
         List<WarehouseItemDto> Items)
     {
         public record WarehouseItemDto(
-            Guid Id,
+            int Id,
             ItemDto Item,
             int Quantity,
             DateTime CreatedAt,

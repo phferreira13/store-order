@@ -1,9 +1,8 @@
-using MediatR;
-using order.service.api.Ioc;
+using order.service.efcore.Bootstrapper;
 using order.service.business.UseCases.Orders;
-using Microsoft.AspNetCore.OpenApi;
-using order.service.http.HttpClients;
 using order.service.domain.Interfaces.HttpClients;
+using order.service.http.HttpClients;
+using order.service.api.Ioc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,9 +16,11 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddMediatR(c => c.RegisterServicesFromAssembly(typeof(AddOrderCommand).Assembly));
 
-builder.Services.AddRepositories();
-
-builder.Services.AddHttpClient<IWarehouseHttpClient, WarehouseHttpClient>();
+builder.Services
+    .AddEntityFramework(builder.Configuration)
+    .AddRepositories()
+    .AddServices()
+    .AddHttpClient<IWarehouseHttpClient, WarehouseHttpClient>();
 
 var app = builder.Build();
 
@@ -32,5 +33,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.Services.ApplyMigrations();
 
 app.Run();
