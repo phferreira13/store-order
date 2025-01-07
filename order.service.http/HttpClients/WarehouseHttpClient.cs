@@ -1,12 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using order.service.domain.Dtos;
 using order.service.domain.Interfaces.HttpClients;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace order.service.http.HttpClients
 {
@@ -31,8 +26,8 @@ namespace order.service.http.HttpClients
             response.EnsureSuccessStatusCode();
 
             var content = await response.Content.ReadAsStringAsync();
-            var warehouses = JsonSerializer.Deserialize<IEnumerable<WarehouseDto>>(content, 
-                new JsonSerializerOptions { PropertyNameCaseInsensitive = true});
+            var warehouses = JsonSerializer.Deserialize<IEnumerable<WarehouseDto>>(content,
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
             return warehouses;
 

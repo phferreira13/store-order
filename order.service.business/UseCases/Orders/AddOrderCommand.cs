@@ -1,15 +1,10 @@
 ﻿using MediatR;
 using order.service.domain.Interfaces.Repositories;
 using order.service.domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace order.service.business.UseCases.Orders
 {
-    public class AddOrderCommand: IRequest<Order>
+    public class AddOrderCommand : IRequest<Order>
     {
         public string Customer { get; set; }
         public List<AddOrderItem> Items { get; set; } = [];
@@ -49,9 +44,9 @@ namespace order.service.business.UseCases.Orders
                     }
                     order.ItemList.AddItem(itemEntity, item.Quantity);
                 }
-                _orderRepository.Add(order);
+                _orderRepository.AddAsync(order);
                 return order;
             }
         }
-    }    
+    }
 }

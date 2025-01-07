@@ -10,14 +10,14 @@ public class Order(string customer)
     public decimal Total => Items.Sum(i => i.Subtotal);
     public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
     public OrderStatus Status { get; private set; } = OrderStatus.Pending;
-    public List<OrderStatusHistoryItem> History { get; private set; } = [];        
+    public List<OrderStatusHistoryItem> History { get; private set; } = [];
 
     public class OrderStatusHistoryItem(OrderStatus status)
     {
         public int Id { get; private set; }
         public OrderStatus Status { get; private set; } = status;
         public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
-    }        
+    }
 
     public class OrderItem
     {

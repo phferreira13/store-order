@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using order.service.domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace order.service.efcore.Context;
 public class OrderContext : DbContext
@@ -19,5 +14,5 @@ public class OrderContext : DbContext
     {
         modelBuilder.HasDefaultSchema("order");
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(OrderContext).Assembly);
-    }   
+    }
 }

@@ -1,9 +1,7 @@
-using MediatR;
 using order.service.api.Ioc;
 using order.service.business.UseCases.Orders;
-using Microsoft.AspNetCore.OpenApi;
-using order.service.http.HttpClients;
 using order.service.domain.Interfaces.HttpClients;
+using order.service.http.HttpClients;
 
 var builder = WebApplication.CreateBuilder(args);
 

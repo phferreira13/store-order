@@ -1,11 +1,6 @@
 ﻿using MediatR;
 using order.service.domain.Interfaces.Repositories;
 using order.service.domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace order.service.business.UseCases.Orders
 {
@@ -34,7 +29,7 @@ namespace order.service.business.UseCases.Orders
                 var order = _orderRepository.GetById(request.OrderId)
                     ?? throw new Exception($"Order with id {request.OrderId} not found.");
 
-                var item = await _itemRepository.GetByIdAsync(request.ItemId) 
+                var item = await _itemRepository.GetByIdAsync(request.ItemId)
                     ?? throw new Exception($"Item with id {request.ItemId} not found.");
 
                 if (request.Quantity < 0)

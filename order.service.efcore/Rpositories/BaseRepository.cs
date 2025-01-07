@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using order.service.efcore.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace order.service.efcore.Rpositories;
 public abstract class BaseRepository

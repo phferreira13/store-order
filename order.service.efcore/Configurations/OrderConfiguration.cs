@@ -12,7 +12,7 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
         builder.Property(x => x.Customer).IsRequired();
         builder.Property(x => x.CreatedAt).IsRequired();
         builder.Property(x => x.Status).IsRequired();
-        
+
         builder.OwnsMany(x => x.Items, orderItems =>
         {
             orderItems.HasKey(z => z.Id);
