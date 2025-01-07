@@ -22,15 +22,27 @@ public class Order(string customer)
     public class OrderItem
     {
         public int Id { get; private set; }
-        public ItemDto Item { get; private set; }
+        public int ItemId { get; private set; }
+        public decimal ItemPrice { get; private set; }
         public int Quantity { get; private set; }
         public DateTime AddedAt { get; private set; }
-        public decimal Subtotal => Item.Price * Quantity;
+        public decimal Subtotal => ItemPrice * Quantity;
+        public virtual ItemDto Item { get; private set; }
+
+        public OrderItem(int itemId, decimal itemPrice, int quantity)
+        {
+            ItemId = itemId;
+            Quantity = quantity;
+            ItemPrice = itemPrice;
+            AddedAt = DateTime.UtcNow;
+        }
 
         public OrderItem(ItemDto item, int quantity)
         {
             Item = item;
             Quantity = quantity;
+            ItemId = item.Id;
+            ItemPrice = item.Price;
             AddedAt = DateTime.UtcNow;
         }
 

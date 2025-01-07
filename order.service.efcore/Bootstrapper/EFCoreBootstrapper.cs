@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using order.service.domain.Interfaces.Repositories;
 using order.service.efcore.Context;
 using order.service.efcore.Rpositories;
+using System;
 
 namespace order.service.efcore.Bootstrapper;
 
@@ -17,36 +18,26 @@ public record EntityBootStrapperOptions(
 public static class EFCoreBootstrapper
 {
     public static IServiceCollection AddEntityFramework(this IServiceCollection services,
-        IConfiguration configuration, EntityBootStrapperOptions options)
+        IConfiguration configuration)
     {
         services.AddDbContext<OrderContext>(options =>
         {
             options.UseSqlServer(configuration.GetConnectionString("SQLServerConnection"));
         });
 
-        if (options.ApplyMigrations)
-        {
-            services.ApplyMigrations();
-        }
-
-        if (options.AddRepositories)
-        {
-            services.AddRepositories();
-        }
-
         return services;
     }
 
-    private static IServiceCollection AddRepositories(this IServiceCollection services)
+    public static IServiceCollection AddRepositories(this IServiceCollection services)
     {
         services.AddScoped<IOrderRepository, OrderRepository>();
         return services;
     }
 
     //Apply migrations
-    private static void ApplyMigrations(this IServiceCollection services)
+    public static void ApplyMigrations(this IServiceProvider serviceProvider)
     {
-        using var scope = services.BuildServiceProvider().CreateScope();
+        using var scope = serviceProvider.CreateScope();
         var context = scope.ServiceProvider.GetRequiredService<OrderContext>();
 
         var logger = scope.ServiceProvider.GetRequiredService<ILogger<OrderContext>>();

@@ -16,11 +16,14 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
         builder.OwnsMany(x => x.Items, orderItems =>
         {
             orderItems.HasKey(z => z.Id);
+            orderItems.Property(z => z.Id).ValueGeneratedOnAdd();
+            orderItems.Property(z => z.ItemId).IsRequired();
             orderItems.Property(z => z.Quantity).IsRequired();
             orderItems.Property(z => z.AddedAt).IsRequired();
             orderItems.OwnsOne(z => z.Item, a =>
             {
-                a.Property(b => b.Id).IsRequired();
+                a.ToTable("Items");
+                a.HasKey(x => x.Id);
                 a.Property(b => b.Name).IsRequired();
                 a.Property(b => b.Price).IsRequired();
             });
@@ -29,6 +32,7 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
         builder.OwnsMany(x => x.History, orderStatusHistory =>
         {
             orderStatusHistory.HasKey(z => z.Id);
+            orderStatusHistory.Property(z => z.Id).ValueGeneratedOnAdd();
             orderStatusHistory.Property(z => z.Status).IsRequired();
             orderStatusHistory.Property(z => z.CreatedAt).IsRequired();
         });
