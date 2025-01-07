@@ -1,4 +1,4 @@
-using order.service.api.Ioc;
+using order.service.efcore.Bootstrapper;
 using order.service.business.UseCases.Orders;
 using order.service.domain.Interfaces.HttpClients;
 using order.service.http.HttpClients;
@@ -15,7 +15,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddMediatR(c => c.RegisterServicesFromAssembly(typeof(AddOrderCommand).Assembly));
 
-builder.Services.AddRepositories();
+builder.Services.AddEntityFramework(builder.Configuration, new(ApplyMigrations: true,  AddRepositories: true));
 
 builder.Services.AddHttpClient<IWarehouseHttpClient, WarehouseHttpClient>();
 

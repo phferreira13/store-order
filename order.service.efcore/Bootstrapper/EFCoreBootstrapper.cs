@@ -3,8 +3,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using order.service.domain.Interfaces.Repositories;
-using order.service.domain.Repositories;
 using order.service.efcore.Context;
+using order.service.efcore.Rpositories;
 
 namespace order.service.efcore.Bootstrapper;
 

@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using order.service.domain.Interfaces.Repositories;
+using order.service.domain.Interfaces.Services;
 using order.service.domain.Models;
 
 namespace order.service.business.UseCases.Orders
@@ -11,7 +12,7 @@ namespace order.service.business.UseCases.Orders
 
         public class AddOrderItem
         {
-            public Guid ItemId { get; set; }
+            public int ItemId { get; set; }
             public int Quantity { get; set; }
         }
 
@@ -24,12 +25,12 @@ namespace order.service.business.UseCases.Orders
         internal class Handler : IRequestHandler<AddOrderCommand, Order>
         {
             private readonly IOrderRepository _orderRepository;
-            private readonly IItemRepository _itemRepository;
+            private readonly IItemService _itemService;
 
-            public Handler(IOrderRepository orderRepository, IItemRepository itemRepository)
+            public Handler(IOrderRepository orderRepository, IItemService itemService)
             {
                 _orderRepository = orderRepository;
-                _itemRepository = itemRepository;
+                _itemService = itemService;
             }
 
             public async Task<Order> Handle(AddOrderCommand request, CancellationToken cancellationToken)
@@ -37,14 +38,14 @@ namespace order.service.business.UseCases.Orders
                 Order order = request;
                 foreach (var item in request.Items)
                 {
-                    var itemEntity = await _itemRepository.GetByIdAsync(item.ItemId);
+                    var itemEntity = await _itemService.GetByIdAsync(item.ItemId);
                     if (itemEntity == null)
                     {
                         throw new Exception($"Item with id {item.ItemId} not found.");
                     }
-                    order.ItemList.AddItem(itemEntity, item.Quantity);
+                    order.AddItem(itemEntity, item.Quantity);
                 }
-                _orderRepository.AddAsync(order);
+                await _orderRepository.AddAsync(order);
                 return order;
             }
         }

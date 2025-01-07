@@ -19,7 +19,12 @@
   <ItemGroup>
     <ProjectReference Include="..\order.service.business\order.service.business.csproj" />
     <ProjectReference Include="..\order.service.domain\order.service.domain.csproj" />
+    <ProjectReference Include="..\order.service.efcore\order.service.efcore.csproj" />
     <ProjectReference Include="..\order.service.http\order.service.http.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Ioc\" />
   </ItemGroup>
 
 </Project>
